@@ -1,22 +1,51 @@
 import 'package:http/http.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:tieup_company/features/profile/data/data_sources/profile_remote_data_source.dart';
+import 'package:tieup_company/features/profile/domain/repositories/profile_repository.dart';
 import 'core/network/network_info.dart';
+import 'features/authentication/data/data_sources/authentication_remote_data_source.dart';
+import 'features/authentication/data/repositories/authentication_repository_impl.dart';
+import 'features/authentication/domain/repositories/authentication_repositry.dart';
+import 'features/authentication/domain/use_cases/login_user.dart';
+import 'features/authentication/domain/use_cases/signUp_user.dart';
+import 'features/authentication/presentation/bloc/authentication_bloc.dart';
+import 'features/loading/presentation/bloc/loading_cubit.dart';
+import 'features/profile/data/repositories/profile_repository_impl.dart';
+import 'features/profile/domain/use_cases/get_profile_information.dart';
+import 'features/profile/domain/use_cases/update_company_image.dart';
+import 'features/profile/domain/use_cases/update_profile_information.dart';
+import 'features/profile/presentation/bloc/profile_bloc.dart';
 
 final sl = GetIt.I;
 
 Future init() async {
   // bloc
+  sl.registerFactory(() => AuthenticationBloc(
+      loginUser: sl(), signUpUser: sl(), loadingCubit: sl()));
+  sl.registerSingleton<LoadingCubit>(LoadingCubit());
+  sl.registerFactory(() => ProfileBloc(
+      getProfileInformation: sl(),updateProfileInformation: sl(),updateCompanyImage: sl()));
 
 
   // use cases
-
+  sl.registerLazySingleton(() => LoginUser(sl()));
+  sl.registerLazySingleton(() => SignUpUser(sl()));
+  sl.registerLazySingleton(() => GetProfileInformation(sl()));
+  sl.registerLazySingleton(() => UpdateProfileInformation(sl()));
+  sl.registerLazySingleton(() => UpdateCompanyImage(sl()));
 
   // Data sources
-
+  sl.registerLazySingleton<AuthenticationRemoteDataSource>(
+          () => AuthenticationRemoteDataSourceImpl(sl()));
+  sl.registerLazySingleton<ProfileRepository>(
+          () => ProfileRepositoryImpl(sl()));
 
   // Repository
-
+  sl.registerLazySingleton<AuthenticationRepository>(
+          () => AuthenticationRepositoryImpl(sl()));
+  sl.registerLazySingleton<ProfileRemoteDataSource>(
+          () => ProfileRemoteDataSourceImpl(sl()));
 
   // core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));

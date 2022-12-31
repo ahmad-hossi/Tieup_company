@@ -5,6 +5,8 @@ import 'package:tieup_company/constants.dart';
 import 'package:tieup_company/core/constants/custom_icon.dart';
 import 'package:tieup_company/core/constants/enums.dart';
 
+import '../../features/profile/presentation/pages/profile_screen.dart';
+
 
 class CustomNavBar extends StatelessWidget {
   const CustomNavBar({Key? key, required this.menuState}) : super(key: key);
@@ -80,7 +82,7 @@ class CustomNavBar extends StatelessWidget {
           ),
           InkWell(
             onTap: (){
-              //Navigator.pushNamed(context, ProfileScreen.routeName);
+              Navigator.pushNamed(context, ProfileScreen.routeName);
             },
             child: Column(
               mainAxisSize: MainAxisSize.min,
