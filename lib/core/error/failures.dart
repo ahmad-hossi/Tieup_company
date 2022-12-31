@@ -9,4 +9,4 @@ class Failure extends Equatable{
 
 }
 
-enum ErrorType {serverError , unauthorisedError, unauthenticated }
+enum ErrorType {serverError , unauthorisedError, unauthenticated ,alreadyExists}
