@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tieup_company/features/add_training/presentation/pages/add_training_screen.dart';
+import 'features/add_job/presentation/bloc/job_add_bloc.dart';
 import 'features/add_job/presentation/pages/add_job_screen.dart';
 import 'features/skill/presentation/Bloc/skill_bloc.dart';
 import 'package:tieup_company/routes.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => sl<LoadingCubit>()),
             BlocProvider(create: (_) => sl<ProfileBloc>()),
             BlocProvider(create: (_) => sl<SkillBloc>()),
+            BlocProvider(create: (_) => sl<JobAddBloc>()),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
