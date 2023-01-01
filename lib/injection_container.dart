@@ -17,10 +17,36 @@ import 'features/profile/domain/use_cases/update_company_image.dart';
 import 'features/profile/domain/use_cases/update_profile_information.dart';
 import 'features/profile/presentation/bloc/profile_bloc.dart';
 
+
 final sl = GetIt.I;
 
 Future init() async {
   // bloc
+
+  sl.registerFactory(() => SkillBloc(
+      getDomains: sl(),
+      getSkills: sl(),
+      getSubDomains: sl(),
+      getUserSkills: sl()));
+
+
+
+  // use cases
+  sl.registerLazySingleton(() => GetDomains(sl()));
+  sl.registerLazySingleton(() => GetSubDomains(sl()));
+  sl.registerLazySingleton(() => GetSkills(sl()));
+  sl.registerLazySingleton(() => GetUserSkills(sl()));
+
+
+  // Data sources
+  sl.registerLazySingleton<SkillRemoteDataSource>(
+          () => SkillRemoteDataSourceImpl(sl()));
+
+
+  // Repository
+  sl.registerLazySingleton<SkillRepository>(() => SkillRepositoryImpl(sl()));
+
+
   sl.registerFactory(() => AuthenticationBloc(
       loginUser: sl(), signUpUser: sl(), loadingCubit: sl()));
   sl.registerSingleton<LoadingCubit>(LoadingCubit());
