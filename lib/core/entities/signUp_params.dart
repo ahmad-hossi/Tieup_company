@@ -15,6 +15,6 @@ class SignUpParams {
         'email': email,
         'phone': phoneNumber,
         'password': password,
-        'type': 'user',
+        'type': 'company',
       };
 }
