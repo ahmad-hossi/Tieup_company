@@ -16,6 +16,14 @@ import 'features/profile/domain/use_cases/get_profile_information.dart';
 import 'features/profile/domain/use_cases/update_company_image.dart';
 import 'features/profile/domain/use_cases/update_profile_information.dart';
 import 'features/profile/presentation/bloc/profile_bloc.dart';
+import 'features/skill/data/data_sources/skill_remote_data_source.dart';
+import 'features/skill/data/repositories/skill_repository_impl.dart';
+import 'features/skill/domain/repositories/skill_repository.dart';
+import 'features/skill/domain/use_cases/get_domains.dart';
+import 'features/skill/domain/use_cases/get_skills.dart';
+import 'features/skill/domain/use_cases/get_sub_domains.dart';
+import 'features/skill/domain/use_cases/get_user_skills.dart';
+import 'features/skill/presentation/Bloc/skill_bloc.dart';
 
 
 final sl = GetIt.I;
