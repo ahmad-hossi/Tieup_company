@@ -23,7 +23,7 @@ class _AddJobScreenState extends State<AddJobScreen> {
   Gender selectedGender = Gender.any;
   List<String> jobStyle = ['part time', 'full time'];
   List<String> jobType = ['on-site', 'remote', 'hybrid'];
-  List<String> militaryService = ['finished', 'postponed', 'in service'];
+  List<String> militaryService = ['finished', 'postponed', 'in service',"don't matter"];
   List<String> cities = [
     'Aleppo',
     'Damascus',
@@ -117,6 +117,7 @@ class _AddJobScreenState extends State<AddJobScreen> {
     }
     dynamicDescriptionsList.clear();
   }
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +142,7 @@ class _AddJobScreenState extends State<AddJobScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(22.0),
                   child: Form(
+                    key: _formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -159,6 +161,12 @@ class _AddJobScreenState extends State<AddJobScreen> {
                               width: 180.w,
                               height: 42.h,
                               child: TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter Job title';
+                                  }
+                                  return null;
+                                },
                                 keyboardType: TextInputType.name,
                                 decoration: const InputDecoration(
                                   border:  OutlineInputBorder(),
@@ -295,6 +303,12 @@ class _AddJobScreenState extends State<AddJobScreen> {
                               width: 150.w,
                               height: 42.h,
                               child: TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter Min requirement years';
+                                  }
+                                  return null;
+                                },
                                 keyboardType: TextInputType.number,
                                 decoration: const InputDecoration(
                                   labelText: "Min requirement years",
@@ -315,6 +329,12 @@ class _AddJobScreenState extends State<AddJobScreen> {
                               width: 150.w,
                               height: 42.h,
                               child: TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter High requirement years';
+                                  }
+                                  return null;
+                                },
                                 keyboardType: TextInputType.number,
                                 decoration: const InputDecoration(
                                   labelText: "High requirement years",
@@ -335,6 +355,12 @@ class _AddJobScreenState extends State<AddJobScreen> {
                               width: 150.w,
                               height: 42.h,
                               child: TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter Low salary';
+                                  }
+                                  return null;
+                                },
                                 keyboardType: TextInputType.number,
                                 decoration: const InputDecoration(
                                   labelText: "Low salary",
@@ -355,6 +381,12 @@ class _AddJobScreenState extends State<AddJobScreen> {
                               width: 150.w,
                               height: 42.h,
                               child: TextFormField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter High salary';
+                                  }
+                                  return null;
+                                },
                                 keyboardType: TextInputType.number,
                                 decoration: const InputDecoration(
                                   labelText: "High salary",

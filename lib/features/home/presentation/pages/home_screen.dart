@@ -10,6 +10,8 @@ import 'package:tieup_company/core/constants/enums.dart';
 import 'package:tieup_company/features/home/presentation/bloc/home_bloc.dart';
 import 'package:badges/badges.dart';
 
+import '../../../add_job/presentation/pages/add_job_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -48,22 +50,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: 34.w,
                       height: 34.h,
                     )),
-                IconButton(
-                    onPressed: () {},
-                    icon: Badge(
-                      badgeContent: Text(
-                        '3',
-                        style: TextStyle(color: Colors.white, fontSize: 12),
-                      ),
-                      padding: EdgeInsets.all(4),
-                      position: BadgePosition(bottom: 16, start: 14),
-                      child: SvgPicture.asset(
-                        'assets/icons/notification.svg',
-                        color: Color(0xff364965),
-                        width: 34.w,
-                        height: 34.h,
-                      ),
-                    )),
+                // IconButton(
+                //     onPressed: () {},
+                //     icon: Badge(
+                //       badgeContent: Text(
+                //         '3',
+                //         style: TextStyle(color: Colors.white, fontSize: 12),
+                //       ),
+                //       padding: EdgeInsets.all(4),
+                //       position: BadgePosition(bottom: 16, start: 14),
+                //       child: SvgPicture.asset(
+                //         'assets/icons/notification.svg',
+                //         color: Color(0xff364965),
+                //         width: 34.w,
+                //         height: 34.h,
+                //       ),
+                //     )),
               ],
               centerTitle: true,
               title: Image.asset(
@@ -77,164 +79,57 @@ class _HomeScreenState extends State<HomeScreen> {
               //     letterSpacing: 6,
               //     fontWeight: FontWeight.w500),)
               ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.h),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 8.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Recommended Jobs',
+          body: Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.h),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                        child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                        margin: EdgeInsets.all(8),
+                        height: 150,
+                        decoration: BoxDecoration(
+                            color: kPrimaryColor,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Center(
+                            child: Text(
+                          'Add New Training',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Color(0xff283C5A),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        NoAccountText(
-                          text2: 'View all',
-                          onTap: () {},
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 186.h,
-                    child: PageView.builder(
-                        controller: PageController(
-                          viewportFraction: 0.95,
-                          initialPage: 0,
-                        ),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 5,
-                        itemBuilder: (_, index) =>
-                            Placeholder(color: kPrimaryColor)
-                        //JobCard(),
-                        ),
-                  ),
-                  SizedBox(
-                    height: 8.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 8.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Recommended Trainings',
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 22),
+                        )),
+                      ),
+                    )),
+                    Expanded(
+                        child: InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => AddJobScreen()));
+                      },
+                      child: Container(
+                        margin: EdgeInsets.all(8),
+                        height: 150,
+                        decoration: BoxDecoration(
+                            color: kPrimaryColor,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Center(
+                            child: Text(
+                          'Add New Job',
                           style: TextStyle(
-                              color: Color(0xff283C5A),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        NoAccountText(
-                          text2: 'View all',
-                          onTap: () {},
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                      width: double.infinity,
-                      height: 186.h,
-                      child: PageView.builder(
-                          controller: PageController(
-                            viewportFraction: 0.95,
-                            initialPage: 0,
-                          ),
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (_, index) => Placeholder(
-                                color: kPrimaryColor,
-                              ), //JobCard(),
-                          itemCount: 10)),
-                  SizedBox(
-                    height: 8.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 8.h),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 4.h),
-                          child: const Text(
-                            'Top Companies',
-                            style: TextStyle(
-                                color: Color(0xff283C5A),
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        NoAccountText(
-                          text2: 'View all',
-                          onTap: () {},
-                        )
-                      ],
-                    ),
-                  ),
-                  // BlocBuilder<HomeBloc, HomeState>(
-                  //   builder: (context, state) {
-                  //     if (state is HomeCompanyLoading) {
-                  //     } else if (state is HomeCompanyFailed) {
-                  //     } else if (state is HomeCompanyLoaded) {
-                  //       return Container(
-                  //           padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 8.h),
-                  //           width: double.infinity,
-                  //           child: GridView.builder(
-                  //             shrinkWrap: true,
-                  //             physics: const NeverScrollableScrollPhysics(),
-                  //             gridDelegate:
-                  //                 SliverGridDelegateWithFixedCrossAxisCount(
-                  //               crossAxisCount: 4,
-                  //               crossAxisSpacing: 12.w,
-                  //               mainAxisSpacing: 12.h,
-                  //               childAspectRatio: 1,
-                  //             ),
-                  //             itemBuilder: (_, index) => InkWell(
-                  //               onTap: () {
-                  //                 context.read<CompanyBloc>().add(
-                  //                     GetCompanyDetailEvent(
-                  //                         companyId:
-                  //                             state.companies[index].id));
-                  //                 Navigator.push(
-                  //                     context,
-                  //                     MaterialPageRoute(
-                  //                         builder: (_) => CompanyProfile(
-                  //                             companyName: state
-                  //                                 .companies[index].name)));
-                  //               },
-                  //               child: Container(
-                  //                 padding: EdgeInsets.all(4.w),
-                  //                 decoration: BoxDecoration(
-                  //                     border: Border.all(color: Colors.grey),
-                  //                     borderRadius: BorderRadius.circular(4.r)),
-                  //                 child: Column(
-                  //                   crossAxisAlignment:
-                  //                       CrossAxisAlignment.center,
-                  //                   mainAxisAlignment:
-                  //                       MainAxisAlignment.spaceAround,
-                  //                   children: [
-                  //                     Image.network(
-                  //                       '$kBaseUrl/${state.companies[index].imageUrl}',
-                  //                       width: 44.w,
-                  //                     ),
-                  //                     Text(state.companies[index].name)
-                  //                   ],
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //             itemCount: state.companies.length,
-                  //           ));
-                  //     }
-                  //     return Container();
-                  //   },
-                  // ),
-                ],
-              ),
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 22),
+                        )),
+                      ),
+                    )),
+                  ],
+                )
+              ],
             ),
           ),
           bottomNavigationBar: CustomNavBar(
