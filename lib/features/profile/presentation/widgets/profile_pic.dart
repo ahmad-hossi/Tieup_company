@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:tieup_company/constants.dart';
 import 'package:tieup_company/core/constants/api_constant.dart';
 
 class ProfilePic extends StatefulWidget {

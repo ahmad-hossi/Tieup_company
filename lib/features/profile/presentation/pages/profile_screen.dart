@@ -30,6 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   File? imageFile;
 
+  @override
   void initState() {
     context.read<ProfileBloc>().add(GetCompanyProfileEvent());
     super.initState();
